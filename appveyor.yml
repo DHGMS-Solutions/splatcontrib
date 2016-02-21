@@ -16,7 +16,7 @@ build:
   project: src\Splat.Contrib.sln
   verbosity: minimal
 after_build:
-- cmd: nuget pack src\Splat.Contrib.nuspec -Symbols -IncludeReferencesProjects -NonInteractive
+- cmd: nuget pack src\Splat.Contrib.nuspec -Symbols -NonInteractive
 test: off
 artifacts:
 - path: src\Splat.Contrib\bin\Release\Splat.Contrib.*.nupkg

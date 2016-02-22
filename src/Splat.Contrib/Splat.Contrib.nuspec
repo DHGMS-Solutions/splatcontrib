@@ -18,7 +18,7 @@
   </metadata>
   <files>
     <file src="bin\release\splat.contrib.dll" target="lib\net45" />
-    <file src="license" />
+    <file src="..\..\license" />
   </files>
 </package>
 

@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contributions for Splat</description>
     <copyright>Copyright belongs to respective package owners</copyright>
-    <tags>NLog Splat</tags>
+    <tags>Splat</tags>
     <dependencies>
       <dependency id="splat" version="1.6.2" />
     </dependencies>

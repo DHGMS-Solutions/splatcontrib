@@ -25,7 +25,7 @@ build:
 after_build:
 - cmd: nuget pack src\Splat.Contrib\Splat.Contrib.nuspec -Symbols -NonInteractive -Version %APPVEYOR_BUILD_VERSION%
 test_script:
-- .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\splatcontrib\src\Splat.Contrib.UnitTests\bin\Release\Splat.Contrib.UnitTests.dll -noshadow -appveyor" -returntargetcode -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\SplatContrib_coverage.xml
+- src\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\splatcontrib\src\Splat.Contrib.UnitTests\bin\Release\Splat.Contrib.UnitTests.dll -noshadow -appveyor" -returntargetcode -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\SplatContrib_coverage.xml
 - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
 - pip install codecov
 - codecov -f "SplatContrib_coverage.xml"

@@ -2,12 +2,17 @@
 {
     using System;
 
-    public interface IFeatureUsageTrackingSession
+    public interface IFeatureUsageTrackingSession<out TReferenceType> : IFeatureUsageTrackingSession
     {
-        Guid FeatureReference { get; }
+        TReferenceType FeatureReference { get; }
+
+        TReferenceType ParentReference { get; }
 
         string FeatureName { get; }
+    }
 
+    public interface IFeatureUsageTrackingSession
+    {
         IFeatureUsageTrackingSession SubFeature(string description);
 
         void OnException(Exception exception);

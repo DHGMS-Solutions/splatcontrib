@@ -34,12 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DefaultFeatureUsageTrackingManager.cs" />
+    <Compile Include="DefaultFeatureUsageTrackingSession.cs" />
     <Compile Include="FeatureUsageTrackingHost.cs" />
     <Compile Include="FunctionalFullLogger.cs" />
     <Compile Include="IEnableFeatureUsageTracking.cs" />
-    <Compile Include="IEnableFunctionalLogger.cs" />
+    <Compile Include="IFeatureUsageTrackingManager.cs" />
     <Compile Include="IFeatureUsageTrackingSession.cs" />
-    <Compile Include="IFunctionalFullLogger.cs" />
+    <Compile Include="Initialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

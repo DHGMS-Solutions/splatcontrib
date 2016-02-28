@@ -1,4 +1,6 @@
-﻿namespace Splat
+﻿using System;
+
+namespace Splat
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -9,13 +11,21 @@
     public static class FeatureUsageTrackingHost
     {
         /// <summary>
-        /// Call this method to write log entries on behalf of the current
-        /// class.
+        /// Gets a Feature Usage tracking session for the class.
         /// </summary>
-        /// <typeparam name="TInstance">The type of the class implementing Functional Full Logger</typeparam>
-        /// <param name="instance">The instance of a class that supports the functional log host via an extension method</param>
-        /// <returns>The Functional Full Logger</returns>
+        /// <typeparam name="TInstance">The type of the class implementing a Feature Usage Tracking Session</typeparam>
+        /// <param name="instance">The instance of a class that supports a Feature Usage Tracking Session via an extension method</param>
+        /// <returns>The Feature Usage Tracking Session</returns>
         public static IFeatureUsageTrackingSession FeatureUsage<TInstance>(this TInstance instance)
-            where TInstance : IFeatureUsageTrackingSession => null;
+            where TInstance : IFeatureUsageTrackingSession
+        {
+            var service = Locator.Current.GetService<IFeatureUsageTrackingManager>();
+            if (service == null)
+            {
+                throw new Exception("Couldn't find an ILogger. This should never happen, your dependency resolver is probably broken.");
+            }
+
+            return service.GetFeatureUsageTrackingSession(typeof (TInstance));
+        }
     }
 }

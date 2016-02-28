@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Splat.Contrib.UnitTests
+﻿namespace Splat.Contrib.UnitTests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -22,32 +16,6 @@ namespace Splat.Contrib.UnitTests
     public static class FunctionalFullLoggerTests
     {
         /// <summary>
-        /// Unit tests for the constructor
-        /// </summary>
-        public sealed class ConstructorMethods
-        {
-            /// <summary>
-            /// Unit test to check the class is created properly
-            /// </summary>
-            [Fact]
-            public void ReturnsInstance()
-            {
-                var instance = new FunctionalFullLogger(LogHost.Default);
-                Assert.NotNull(instance);
-            }
-
-            /// <summary>
-            /// Unit test to ensure an argument null exception is thrown if no logger is passed.
-            /// </summary>
-            [Fact]
-            public void ThrowsArgumentNullException()
-            {
-                // ReSharper disable once AssignNullToNotNullAttribute
-                Assert.Throws<ArgumentNullException>(() => new FunctionalFullLogger(null));
-            }
-        }
-
-        /// <summary>
         /// Unit tests for the debug method
         /// </summary>
         public sealed class DebugMethod : BaseLogMessageMethodTests
@@ -55,7 +23,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>> MessageAction
+            protected override Action<IFullLogger, Func<String>> MessageAction
             {
                 get
                 {
@@ -72,7 +40,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>, Exception> MessageAction
+            protected override Action<IFullLogger, Func<String>, Exception> MessageAction
             {
                 get
                 {
@@ -89,7 +57,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>> MessageAction
+            protected override Action<IFullLogger, Func<String>> MessageAction
             {
                 get
                 {
@@ -106,7 +74,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>, Exception> MessageAction
+            protected override Action<IFullLogger, Func<String>, Exception> MessageAction
             {
                 get
                 {
@@ -123,7 +91,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>> MessageAction
+            protected override Action<IFullLogger, Func<String>> MessageAction
             {
                 get
                 {
@@ -140,7 +108,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>, Exception> MessageAction
+            protected override Action<IFullLogger, Func<String>, Exception> MessageAction
             {
                 get
                 {
@@ -157,7 +125,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>> MessageAction
+            protected override Action<IFullLogger, Func<String>> MessageAction
             {
                 get
                 {
@@ -174,7 +142,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>, Exception> MessageAction
+            protected override Action<IFullLogger, Func<String>, Exception> MessageAction
             {
                 get
                 {
@@ -191,7 +159,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>> MessageAction
+            protected override Action<IFullLogger, Func<String>> MessageAction
             {
                 get
                 {
@@ -208,7 +176,7 @@ namespace Splat.Contrib.UnitTests
             /// <summary>
             /// Gets the message action to log a message against.
             /// </summary>
-            protected override Action<FunctionalFullLogger, Func<String>, Exception> MessageAction
+            protected override Action<IFullLogger, Func<String>, Exception> MessageAction
             {
                 get
                 {
@@ -226,7 +194,7 @@ namespace Splat.Contrib.UnitTests
             /// Gets the message action to log a message against.
             /// </summary>
             [NotNull]
-            protected abstract Action<FunctionalFullLogger, Func<String>> MessageAction { get; }
+            protected abstract Action<IFullLogger, Func<String>> MessageAction { get; }
 
             /// <summary>
             /// Unit test to log a message against the relevant message action.
@@ -234,7 +202,7 @@ namespace Splat.Contrib.UnitTests
             [Fact]
             public void LogsMessage()
             {
-                var logger = new FunctionalFullLogger(LogHost.Default);
+                var logger = LogHost.Default;
                 this.MessageAction(logger, () => "message");
             }
         }
@@ -248,7 +216,7 @@ namespace Splat.Contrib.UnitTests
             /// Gets the message action to log a message and exception against.
             /// </summary>
             [NotNull]
-            protected abstract Action<FunctionalFullLogger, Func<String>, Exception> MessageAction { get; }
+            protected abstract Action<IFullLogger, Func<String>, Exception> MessageAction { get; }
 
             /// <summary>
             /// Unit test to log a message and exception against the relevant message action.
@@ -256,7 +224,7 @@ namespace Splat.Contrib.UnitTests
             [Fact]
             public void LogsException()
             {
-                var logger = new FunctionalFullLogger(LogHost.Default);
+                var logger = LogHost.Default;
                 this.MessageAction(logger, () => "message", new Exception());
             }
         }

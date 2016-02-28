@@ -1,6 +1,6 @@
 ﻿namespace Splat
 {
-    public interface IEnableFeatureUsageTracking : IEnableFunctionalLogger
+    public interface IEnableFeatureUsageTracking
     {
     }
 }

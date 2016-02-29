@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="DefaultFeatureUsageTrackingManager.cs" />
     <Compile Include="DefaultFeatureUsageTrackingSession.cs" />
+    <Compile Include="FeatureUsageTrackingHelpers.cs" />
     <Compile Include="FeatureUsageTrackingHost.cs" />
     <Compile Include="FunctionalFullLogger.cs" />
     <Compile Include="IEnableFeatureUsageTracking.cs" />

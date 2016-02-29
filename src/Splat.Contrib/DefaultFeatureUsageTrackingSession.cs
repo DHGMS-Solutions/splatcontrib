@@ -19,6 +19,14 @@ namespace Splat
             this.ParentReference = parentReference;
             this.FeatureName = featureName;
             this.FeatureReference = Guid.NewGuid();
+
+            var message = "Feature Start. Reference=" + this.FeatureReference;
+            if (this.ParentReference != Guid.Empty)
+            {
+                message += ", Parent Reference=" + this.ParentReference;
+            }
+
+            this.Log().Info(message);
         }
 
         public Guid ParentReference { get; }
@@ -37,6 +45,11 @@ namespace Splat
             this.Log().InfoException(
                 () => "Feature Usage Tracking Exception",
                 exception);
+        }
+
+        public void Dispose()
+        {
+            this.Log().Info("Feature Finish: " + this.FeatureReference);
         }
     }
 }

@@ -117,7 +117,7 @@ namespace Splat
             Act(logger, LogLevel.Warn, valueFunction, logger.Warn, exception);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction)
         {
             if (logger.Level <= thresholdLogLevel)
@@ -126,7 +126,7 @@ namespace Splat
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex)
         {
             if (logger.Level <= thresholdLogLevel)

@@ -11,7 +11,7 @@
         string FeatureName { get; }
     }
 
-    public interface IFeatureUsageTrackingSession
+    public interface IFeatureUsageTrackingSession : IDisposable
     {
         IFeatureUsageTrackingSession SubFeature(string description);
 

@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Splat
 {
-    public class DefaultFeatureUsageTrackingSession : IFeatureUsageTrackingSession<Guid>, IEnableFunctionalLogger
+    public class DefaultFeatureUsageTrackingSession : IFeatureUsageTrackingSession<Guid>, IEnableLogger
     {
         public DefaultFeatureUsageTrackingSession([NotNull] string featureName) : this(featureName, Guid.Empty)
         {

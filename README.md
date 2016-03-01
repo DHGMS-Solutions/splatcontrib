@@ -9,6 +9,14 @@ Splat Contrib is a small library aimed at providing some extensions to the excel
 * Provide logging extensions that allow Func&lt;string&gt; to be passed in and only be evaluated if the relevant logging level is enabled.
 * Look to feed contributions back to the main splat project once they've reached a point of maturity.
 
+## Getting started
+
+**Step 1.** Install Splat Contrib via the NuGet package: [Splat.Contrib](https://www.nuget.org/packages/Splat.Contrib/)
+
+```
+PM> Install-Package Splat.Contrib
+```
+
 ## Viewing the documentation
 
 [See the main documentation for Splat](https://github.com/paulcbetts/splat)

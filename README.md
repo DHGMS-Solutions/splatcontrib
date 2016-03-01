@@ -7,7 +7,7 @@ DHGMS Quality Assurance Pack is a starter nuget package to stick in projects tha
 
 ## Mission Statement
 * Provide logic for Feature Usage Tracking in Applications
-* Provide logging extensions that allow Func<string> to be passed in and only be evaluated if the relevant logging level is enabled.
+* Provide logging extensions that allow Func&lt;string&gt; to be passed in and only be evaluated if the relevant logging level is enabled.
 * Look to feed contributions back to the main splat project once they've reached a point of maturity.
 
 ## Viewing the documentation
@@ -16,7 +16,7 @@ DHGMS Quality Assurance Pack is a starter nuget package to stick in projects tha
 
 ### Functional Logging ###
 
-These methods are extensions to the current Splat logging mechanism. They simply need you to change your logging methods to pass a Func<string> \ Lambda into them.
+These methods are extensions to the current Splat logging mechanism. They simply need you to change your logging methods to pass a Func&lt;string&gt; \ Lambda into them.
 
 ```cs
 this.Log().Debug(() => "Something that will only evaluate if the debug log level is enabled");

@@ -2,8 +2,7 @@
 
 [![NuGet Stats](https://img.shields.io/nuget/dt/splat.contrib.svg)](https://www.nuget.org/packages/splat.contrib) [![Issue Stats](http://www.issuestats.com/github/dhgms-solutions/splatcontrib/badge/issue?style=flat)](http://www.issuestats.com/github/dhgms-solutions/splatcontrib) [![Pull Request Stats](http://www.issuestats.com/github/dhgms-solutions/splatcontrib/badge/pr?style=flat)](http://www.issuestats.com/github/dhgms-solutions/splat.contrib) 
 
-Splat Contrib is a small library aimed at providing some extensions to the excellent Splat library by Paul Betts
-DHGMS Quality Assurance Pack is a starter nuget package to stick in projects that bundles together various Roslyn Analyzers and other tools that can be handy in Quality Assurance of a development project. The projects bundled into this are subjective and may not suit your tastes, but it's a good proof of concept on how you can do something similar for your own team.
+Splat Contrib is a small library aimed at providing some extensions to the excellent Splat library by Paul Betts.
 
 ## Mission Statement
 * Provide logic for Feature Usage Tracking in Applications

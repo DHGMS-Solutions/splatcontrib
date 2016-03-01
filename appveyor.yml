@@ -30,8 +30,8 @@ test_script:
 - pip install codecov
 - codecov -f "SplatContrib_coverage.xml"
 artifacts:
-- path: src\Splat.Contrib\bin\Release\Splat.Contrib.*.nupkg
-  name: nugetpackage
+- path: '*.nupkg'
+  name: nuget
 deploy:
 - provider: NuGet
   server: https://www.myget.org/F/dhgms/api/v2/package

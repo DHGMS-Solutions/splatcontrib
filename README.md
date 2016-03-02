@@ -26,6 +26,10 @@ PM> Install-Package Splat.Contrib
 These methods are extensions to the current Splat logging mechanism. They simply need you to change your logging methods to pass a Func&lt;string&gt; \ Lambda into them.
 
 ```cs
+// These are extension methods so at the top of your .cs file you will need
+using Splat;
+
+// then utilise the extension methods exactly the same way as you would the normal logging methods.
 this.Log().Debug(() => "Something that will only evaluate if the debug log level is enabled");
 ```
 

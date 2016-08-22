@@ -1,0 +1,126 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+var methods = new[] { "Debug", "Error", "Fatal", "Info", "Warn" };
+#>
+namespace Splat
+{
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Runtime.CompilerServices;
+    using JetBrains.Annotations;
+
+    public static class FullLoggerExtensions
+    {
+    <#
+    foreach (var method in methods)
+    {
+    #>
+        /// <summary>
+        /// Checks if the <#=method#> log level is enabled then evaluates the string function and logs the message.
+        /// </summary>
+        /// <param name="logger">The splat logger.</param>
+        /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
+        public static void <#=method#>(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        {
+            Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>);
+        }
+
+        /// <summary>
+        /// Checks if the <#=method#> log level is enabled then evaluates the string function and logs the message along with the exception.
+        /// </summary>
+        /// <param name="logger">The splat logger.</param>
+        /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
+        /// <param name="exception">The exception that occurred</param>
+        public static void <#=method#>Exception(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        {
+            Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, exception);
+        }
+
+<#
+    }
+    #>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction)
+        {
+            if (logger.Level <= thresholdLogLevel)
+            {
+                logAction.Invoke(valueFunction.Invoke());
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex)
+        {
+            if (logger.Level <= thresholdLogLevel)
+            {
+                logAction.Invoke(valueFunction.Invoke(), ex);
+            }
+        }
+    }
+
+    public static class ContribFullLoggerExtensions
+    {
+    <#
+    foreach (var method in methods)
+    {
+    #>
+        /// <summary>
+        /// Checks if the <#=method#> log level is enabled then evaluates the string function and logs the message.
+        /// </summary>
+        /// <param name="logger">The splat logger.</param>
+        /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
+        /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
+        public static void <#=method#>(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        {
+            Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, contextPropertyCollection);
+        }
+
+        /// <summary>
+        /// Checks if the <#=method#> log level is enabled then evaluates the string function and logs the message along with the exception.
+        /// </summary>
+        /// <param name="logger">The splat logger.</param>
+        /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
+        /// <param name="exception">The exception that occurred</param>
+        /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
+        public static void <#=method#>Exception(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        {
+            Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, exception, contextPropertyCollection);
+        }
+
+<#
+    }
+    #>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction, KeyedCollection<string, string> contextPropertyCollection)
+        {
+            if (logger.Level <= thresholdLogLevel)
+            {
+                if (contextPropertyCollection != null && contextPropertyCollection.Count > 0)
+                {
+                    logger.SetContextProperties(contextPropertyCollection);
+                }
+
+                logAction.Invoke(valueFunction.Invoke());
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex, KeyedCollection<string, string> contextPropertyCollection)
+        {
+            if (logger.Level <= thresholdLogLevel)
+            {
+                if (contextPropertyCollection != null && contextPropertyCollection.Count > 0)
+                {
+                    logger.SetContextProperties(contextPropertyCollection);
+                }
+
+                logAction.Invoke(valueFunction.Invoke(), ex);
+            }
+        }
+    }
+}

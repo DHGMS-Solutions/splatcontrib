@@ -36,9 +36,14 @@
   <ItemGroup>
     <Compile Include="DefaultFeatureUsageTrackingManager.cs" />
     <Compile Include="DefaultFeatureUsageTrackingSession.cs" />
+    <Compile Include="Extensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Extensions.tt</DependentUpon>
+    </Compile>
     <Compile Include="FeatureUsageTrackingHelpers.cs" />
     <Compile Include="FeatureUsageTrackingHost.cs" />
-    <Compile Include="FunctionalFullLogger.cs" />
+    <Compile Include="IContribFullLogger.cs" />
     <Compile Include="IEnableFeatureUsageTracking.cs" />
     <Compile Include="IFeatureUsageTrackingManager.cs" />
     <Compile Include="IFeatureUsageTrackingSession.cs" />
@@ -58,6 +63,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Splat.Contrib.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Extensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Extensions.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

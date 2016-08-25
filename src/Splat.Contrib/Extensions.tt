@@ -10,7 +10,7 @@ var methods = new[] { "Debug", "Error", "Fatal", "Info", "Warn" };
 namespace Splat
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
@@ -25,7 +25,7 @@ namespace Splat
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void <#=method#>(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void <#=method#>(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>);
         }
@@ -36,7 +36,7 @@ namespace Splat
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void <#=method#>Exception(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void <#=method#>Exception(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, exception);
         }
@@ -45,7 +45,7 @@ namespace Splat
     }
     #>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction)
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string> logAction)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -54,7 +54,7 @@ namespace Splat
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex)
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string, Exception> logAction, [NotNull]Exception ex)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -75,7 +75,7 @@ namespace Splat
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void <#=method#>(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void <#=method#>(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, contextPropertyCollection);
         }
@@ -87,7 +87,7 @@ namespace Splat
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void <#=method#>Exception(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void <#=method#>Exception(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.<#=method#>, valueFunction, logger.<#=method#>, exception, contextPropertyCollection);
         }
@@ -96,7 +96,7 @@ namespace Splat
     }
     #>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction, KeyedCollection<string, string> contextPropertyCollection)
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string> logAction, IDictionary<string, string> contextPropertyCollection)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -110,7 +110,7 @@ namespace Splat
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex, KeyedCollection<string, string> contextPropertyCollection)
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string, Exception> logAction, [NotNull]Exception ex, IDictionary<string, string> contextPropertyCollection)
         {
             if (logger.Level <= thresholdLogLevel)
             {

@@ -1,7 +1,7 @@
 ﻿namespace Splat
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void Debug(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void Debug(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.Debug, valueFunction, logger.Debug);
         }
@@ -23,7 +23,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void DebugException(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void DebugException(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.Debug, valueFunction, logger.Debug, exception);
         }
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void Error(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void Error(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.Error, valueFunction, logger.Error);
         }
@@ -44,7 +44,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void ErrorException(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void ErrorException(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.Error, valueFunction, logger.Error, exception);
         }
@@ -54,7 +54,7 @@
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void Fatal(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void Fatal(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.Fatal, valueFunction, logger.Fatal);
         }
@@ -65,7 +65,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void FatalException(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void FatalException(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.Fatal, valueFunction, logger.Fatal, exception);
         }
@@ -75,7 +75,7 @@
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void Info(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void Info(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.Info, valueFunction, logger.Info);
         }
@@ -86,7 +86,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void InfoException(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void InfoException(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.Info, valueFunction, logger.Info, exception);
         }
@@ -96,7 +96,7 @@
         /// </summary>
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
-        public static void Warn(this IFullLogger logger, [NotNull]Func<String> valueFunction)
+        public static void Warn(this IFullLogger logger, [NotNull]Func<string> valueFunction)
         {
             Act(logger, LogLevel.Warn, valueFunction, logger.Warn);
         }
@@ -107,13 +107,13 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
-        public static void WarnException(this IFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception)
+        public static void WarnException(this IFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception)
         {
             Act(logger, LogLevel.Warn, valueFunction, logger.Warn, exception);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction)
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string> logAction)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -122,7 +122,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex)
+        private static void Act(IFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string, Exception> logAction, [NotNull]Exception ex)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -139,7 +139,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void Debug(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void Debug(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Debug, valueFunction, logger.Debug, contextPropertyCollection);
         }
@@ -151,7 +151,7 @@
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void DebugException(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void DebugException(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Debug, valueFunction, logger.Debug, exception, contextPropertyCollection);
         }
@@ -162,7 +162,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void Error(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void Error(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Error, valueFunction, logger.Error, contextPropertyCollection);
         }
@@ -174,7 +174,7 @@
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void ErrorException(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void ErrorException(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Error, valueFunction, logger.Error, exception, contextPropertyCollection);
         }
@@ -185,7 +185,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void Fatal(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void Fatal(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Fatal, valueFunction, logger.Fatal, contextPropertyCollection);
         }
@@ -197,7 +197,7 @@
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void FatalException(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void FatalException(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Fatal, valueFunction, logger.Fatal, exception, contextPropertyCollection);
         }
@@ -208,7 +208,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void Info(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void Info(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Info, valueFunction, logger.Info, contextPropertyCollection);
         }
@@ -220,7 +220,7 @@
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void InfoException(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void InfoException(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Info, valueFunction, logger.Info, exception, contextPropertyCollection);
         }
@@ -231,7 +231,7 @@
         /// <param name="logger">The splat logger.</param>
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void Warn(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, KeyedCollection<string, string> contextPropertyCollection)
+        public static void Warn(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Warn, valueFunction, logger.Warn, contextPropertyCollection);
         }
@@ -243,13 +243,13 @@
         /// <param name="valueFunction">The string function to evaluate if the log level is enabled</param>
         /// <param name="exception">The exception that occurred</param>
         /// <param name="contextPropertyCollection">Collection of Key\Value pairs to attach as properties to the logging context</param>
-        public static void WarnException(this IContribFullLogger logger, [NotNull]Func<String> valueFunction, [NotNull]Exception exception, KeyedCollection<string, string> contextPropertyCollection)
+        public static void WarnException(this IContribFullLogger logger, [NotNull]Func<string> valueFunction, [NotNull]Exception exception, IDictionary<string, string> contextPropertyCollection)
         {
             Act(logger, LogLevel.Warn, valueFunction, logger.Warn, exception, contextPropertyCollection);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String> logAction, KeyedCollection<string, string> contextPropertyCollection)
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string> logAction, IDictionary<string, string> contextPropertyCollection)
         {
             if (logger.Level <= thresholdLogLevel)
             {
@@ -263,7 +263,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<String> valueFunction, [NotNull]Action<String, Exception> logAction, [NotNull]Exception ex, KeyedCollection<string, string> contextPropertyCollection)
+        private static void Act(IContribFullLogger logger, LogLevel thresholdLogLevel, [NotNull]Func<string> valueFunction, [NotNull]Action<string, Exception> logAction, [NotNull]Exception ex, IDictionary<string, string> contextPropertyCollection)
         {
             if (logger.Level <= thresholdLogLevel)
             {

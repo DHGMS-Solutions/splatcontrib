@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Splat
 {
-    public class DefaultFeatureUsageTrackingSession : IFeatureUsageTrackingSession<Guid>, IEnableLogger
+    public class DefaultFeatureUsageTrackingSession : IFeatureUsageTrackingSession<Guid>, IEnableContribLogger
     {
         public DefaultFeatureUsageTrackingSession([NotNull] string featureName) : this(featureName, Guid.Empty)
         {
@@ -20,13 +20,14 @@ namespace Splat
             this.FeatureName = featureName;
             this.FeatureReference = Guid.NewGuid();
 
-            var message = "Feature Start. Reference=" + this.FeatureReference;
+            var message = $"Feature Start. Reference={this.FeatureReference}";
             if (this.ParentReference != Guid.Empty)
             {
-                message += ", Parent Reference=" + this.ParentReference;
+                message += $", Parent Reference={this.ParentReference}";
             }
 
-            this.Log().Info(message);
+            // vs getting confused over IEnable... interfaces and extension methods
+            ContribLogHostExtensions.Log(this).Info(() => message);
         }
 
         public Guid ParentReference { get; }
@@ -42,14 +43,16 @@ namespace Splat
 
         public void OnException(Exception exception)
         {
-            this.Log().InfoException(
+            // vs getting confused over IEnable... interfaces and extension methods
+            ContribLogHostExtensions.Log(this).InfoException(
                 () => "Feature Usage Tracking Exception",
                 exception);
         }
 
         public void Dispose()
         {
-            this.Log().Info("Feature Finish: " + this.FeatureReference);
+            // vs getting confused over IEnable... interfaces and extension methods
+            ContribLogHostExtensions.Log(this).Info(() => $"Feature Finish: {this.FeatureReference}");
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 namespace Splat
 {
     public interface IContribFullLogger : IFullLogger
     {
-        void SetContextProperties(KeyedCollection<string, string> contextPropertyCollection);
+        void SetContextProperties(IDictionary<string, string> contextPropertyCollection);
     }
 }

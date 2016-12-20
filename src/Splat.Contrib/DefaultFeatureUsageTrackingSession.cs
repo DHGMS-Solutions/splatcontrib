@@ -26,8 +26,7 @@ namespace Splat
                 message += $", Parent Reference={this.ParentReference}";
             }
 
-            // vs getting confused over IEnable... interfaces and extension methods
-            ContribLogHostExtensions.Log(this).Info(() => message);
+            this.ContribLog().Info(() => message);
         }
 
         public Guid ParentReference { get; }
@@ -44,7 +43,7 @@ namespace Splat
         public void OnException(Exception exception)
         {
             // vs getting confused over IEnable... interfaces and extension methods
-            ContribLogHostExtensions.Log(this).InfoException(
+            this.ContribLog().InfoException(
                 () => "Feature Usage Tracking Exception",
                 exception);
         }
@@ -52,7 +51,7 @@ namespace Splat
         public void Dispose()
         {
             // vs getting confused over IEnable... interfaces and extension methods
-            ContribLogHostExtensions.Log(this).Info(() => $"Feature Finish: {this.FeatureReference}");
+            this.ContribLog().Info(() => $"Feature Finish: {this.FeatureReference}");
         }
     }
 }

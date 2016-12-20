@@ -29,7 +29,7 @@ namespace Splat
         /// Call this method to write log entries on behalf of the current 
         /// class.
         /// </summary>
-        public static IContribFullLogger Log<T>(this T This) where T : IEnableContribLogger
+        public static IContribFullLogger ContribLog<T>(this T This) where T : IEnableContribLogger
         {
             var factory = Locator.Current.GetService<IContribLogManager>();
             if (factory == null)

@@ -1,91 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F8EDC95-CB7B-4D36-9464-121FE49D5E8B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Splat</RootNamespace>
-    <AssemblyName>Splat.Contrib</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <Version>0.0.1</Version>
+    <Authors>DHGMSSolutions,dpvreony</Authors>
+    <Company>DHGMS Solutions</Company>
+    <Product>Dhgms.SplatContrib</Product>
+    <Copyright>Copyright 2016-2018. All Rights Reserved</Copyright>
+    <PackageProjectUrl>https://github.com/DHGMS-Solutions/splatcontrib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DHGMS-Solutions/splatcontrib</RepositoryUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/DHGMS-Solutions/splatcontrib/master/license</PackageLicenseUrl>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="ContribLogHost.cs" />
-    <Compile Include="ContribLogHostExtensions.cs" />
-    <Compile Include="DefaultContribLogManager.cs" />
-    <Compile Include="DefaultFeatureUsageTrackingManager.cs" />
-    <Compile Include="DefaultFeatureUsageTrackingSession.cs" />
-    <Compile Include="Extensions.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Extensions.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureUsageTrackingExtensions.cs" />
-    <Compile Include="FeatureUsageTrackingHostExtensions.cs" />
-    <Compile Include="IContribFullLogger.cs" />
-    <Compile Include="IContribLogManager.cs" />
-    <Compile Include="IEnableContribLogger.cs" />
-    <Compile Include="IEnableFeatureUsageTracking.cs" />
-    <Compile Include="IFeatureUsageTrackingManager.cs" />
-    <Compile Include="IFeatureUsageTrackingSession.cs" />
-    <Compile Include="Initialization.cs" />
-    <Compile Include="NullContribLogger.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReflectionStubs.cs" />
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Splat" Version="4.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="JetBrains.Annotations.PCL328, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.PCL328.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Splat.Contrib.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Extensions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Extensions.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
